@@ -39,6 +39,8 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 </head>
 
@@ -119,7 +121,7 @@
 						<li><a href="${contextPath}/allCars">All Cars</a></li>						
 						<li><a href="${contextPath}/searchCar">Search Cars</a></li>
 						<li><a href="${contextPath}/shoppingCart">Shopping Cart</a></li>
-						<li><a href="${contextPath}/adminHome">Admin Panel</a></li>
+						<li><a href="${contextPath}/adminhome">Admin Panel</a></li>
 				</ul>
 				</div>
 				<!-- menu nav -->

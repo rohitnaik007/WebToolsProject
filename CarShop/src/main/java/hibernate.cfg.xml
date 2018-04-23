@@ -16,6 +16,9 @@
 		<mapping class="com.carshop.mycarapp.pojo.Person" />
 	
 <mapping class="com.carshop.mycarapp.pojo.Car" />
+<mapping class="com.carshop.mycarapp.pojo.Role" />
+<mapping class="com.carshop.mycarapp.pojo.Order" />
+<mapping class="com.carshop.mycarapp.pojo.OrderItems" />
 
 	</session-factory>
 </hibernate-configuration>

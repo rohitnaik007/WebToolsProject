@@ -1,34 +1,39 @@
 package com.carshop.mycarapp.pojo;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_table")
-@PrimaryKeyJoinColumn(name = "personID")
-public class User extends Person {
+
+public class User{
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "userID", unique=true, nullable = false)
+	private long userID;
+	
 
 	@Column(name = "userName")
 	private String username;
 
 	@Column(name = "password")
-	private String password;
-	
-	@Column(name = "email")
-	private String email;
+	private String password;	
 
-	//@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-//	private Person person;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "personID")
+    private Person person;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "roleID")
+    private Role role;
 	
 	public User(String username, String password) {
 		this.username = username;
@@ -55,13 +60,33 @@ public class User extends Person {
 		this.password = password;
 	}
 
-	public String getEmail() {
-		return email;
+	public Person getPerson() {
+		return person;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
+
+	public long getUserID() {
+		return userID;
+	}
+
+	public void setUserID(long userID) {
+		this.userID = userID;
+	}
+
+	public Role getRoleID() {
+		return role;
+	}
+
+	public void setRoleID(Role roleID) {
+		this.role = roleID;
+	}
+
+	
+
+	
 
 	
 }

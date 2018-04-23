@@ -48,13 +48,13 @@ public class UserDAO extends DAO {
 			System.out.println("inside DAO");
 
 			//Email email = new Email(u.getEmail().getEmailAddress());
-			User user = new User(u.getUsername(), u.getPassword());
-
-			user.setFirstName(u.getFirstName());
-			user.setLastName(u.getLastName());
+			//User user = new User(u.getUsername(), u.getPassword());
+			User user = new User();
+			//user.setFirstName(u.getFirstName());
+			//user.setLastName(u.getLastName());
 			//user.setEmail(email);
 			//email.setUser(user);
-			getSession().save(user);
+			//getSession().save(user);
 			commit();
 			return user;
 

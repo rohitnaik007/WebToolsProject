@@ -1,9 +1,10 @@
 package com.carshop.mycarapp.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -16,25 +17,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.carshop.mycarapp.dao.CarDAO;
-import com.carshop.mycarapp.dao.UserDAO;
+import com.carshop.mycarapp.exception.CarException;
 import com.carshop.mycarapp.pojo.Car;
-import com.carshop.mycarapp.pojo.User;
-import com.carshop.mycarapp.exception.UserException;
 import com.carshop.mycarapp.validator.CarValidator;
-import com.carshop.mycarapp.validator.UserValidator;
+
 
 
 @Controller
 @RequestMapping("/*")
-public class UserController {
+public class CarController {
 
-	@Autowired
-	@Qualifier("userDao")
-	UserDAO userDao;
-
-	@Autowired
-	@Qualifier("userValidator")
-	UserValidator validator;
+//	@Autowired
+//	@Qualifier("userDao")
+//	UserDAO userDao;
+//
+//	@Autowired
+//	@Qualifier("userValidator")
+//	UserValidator validator;
 	
 	@Autowired
 	@Qualifier("carValidator")
@@ -46,88 +45,10 @@ public class UserController {
 
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
-		binder.setValidator(validator);
-	}
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	protected String goToUserHome(HttpServletRequest request) throws Exception {
-		return "home";
+		binder.setValidator(carValidator);
 	}
 	
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	protected String goToUserLoginPage(HttpServletRequest request) throws Exception {
-		return "login";
-	}
-	
-	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	protected String loginUser(HttpServletRequest request) throws Exception {
-
-		HttpSession session = (HttpSession) request.getSession();
-		
-		try {
-
-			System.out.print("loginUser");
-
-			User u = userDao.get(request.getParameter("username"), request.getParameter("password"));
-			
-			if(u == null){
-				System.out.println("UserName/Password does not exist");
-				session.setAttribute("errorMessage", "UserName/Password does not exist");
-				return "error";
-			}
-			
-			session.setAttribute("user", u);
-			
-			return "home";
-
-		} catch (UserException e) {
-			System.out.println("Exception: " + e.getMessage());
-			session.setAttribute("errorMessage", "error while login");
-			return "error";
-		}
-
-	}
-	
-
-	@RequestMapping(value = "/registerPage", method = RequestMethod.GET)
-	protected ModelAndView registerUserPage() throws Exception {
-		System.out.print("registerUser");
-
-		return new ModelAndView("register-user", "user", new User());
-
-	}
-	
-	
-	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	protected ModelAndView registerNewUser(HttpServletRequest request,  @ModelAttribute("user") User user, BindingResult result) throws Exception {
-
-		validator.validate(user, result);
-
-		if (result.hasErrors()) {
-			return new ModelAndView("register-user", "user", user);
-		}
-
-		try {
-
-			System.out.print("registerNewUser");
-
-			User u = userDao.register(user);
-			
-			request.getSession().setAttribute("user", u);
-			
-			return new ModelAndView("user-added-success", "user", u);
-
-		} catch (UserException e) {
-			System.out.println("Exception: " + e.getMessage());
-			return new ModelAndView("error", "errorMessage", "error while login");
-		}
-		
-	}
-	
-	/*
 	@RequestMapping(value = "/searchCar", method = RequestMethod.GET)
 	public String searchCar() {
 	return "car-search";
@@ -194,6 +115,22 @@ public class UserController {
 		protected String adminHome(HttpServletRequest request) throws Exception {
 			return "adminhome";
 		}
-		*/
+		
+		@RequestMapping(value = "/allCars", method = RequestMethod.GET)
+		public ModelAndView addCategory(HttpServletRequest request) throws Exception {
+
+			try {			
+				
+				List<Car> cars = carDao.list();
+				return new ModelAndView("all-cars", "cars", cars);
+				
+			} catch (CarException e) {
+				System.out.println(e.getMessage());
+				return new ModelAndView("error", "errorMessage", "error while login");
+			}
+			
+			
+		}
+		
 
 }

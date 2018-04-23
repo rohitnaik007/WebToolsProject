@@ -7,6 +7,6 @@
 		<bean id="userValidator" class="com.carshop.mycarapp.validator.UserValidator"></bean>
 	<bean id="userDao" class="com.carshop.mycarapp.dao.UserDAO" ></bean>
 	
-	
+	<bean id="carValidator" class="com.carshop.mycarapp.validator.CarValidator"></bean>
 	<bean id="carDao" class="com.carshop.mycarapp.dao.CarDAO" ></bean>
 </beans>

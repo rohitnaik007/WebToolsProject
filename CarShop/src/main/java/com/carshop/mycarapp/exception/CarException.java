@@ -4,12 +4,12 @@ public class CarException extends Exception {
 
 	public CarException(String message)
 	{
-		super("UserException-"+message);
+		super("CarException-"+message);
 	}
 	
 	public CarException(String message, Throwable cause)
 	{
-		super("UserException-"+message,cause);
+		super("CarException-"+message,cause);
 	}
 	
 }
