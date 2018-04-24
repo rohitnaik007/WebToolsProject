@@ -22,6 +22,7 @@ public class CarValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "error.invalid.price", "Price Required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "error.invalid.description","description Required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "colorsAvailable", "error.invalid.colorsAvailable","Put colors separated by comma");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "imageSrc", "error.invalid.imageSrc","Put colors separated by comma");
 		// check if user exists
 		
 	}

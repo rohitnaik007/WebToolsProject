@@ -60,6 +60,21 @@ public class CarDAO extends DAO{
 	        }
 	    	
 	    }
+
+	public Car get(String parameter) throws Exception {
+		// TODO Auto-generated method stub
+		try {
+			
+            begin();
+            Query q = getSession().createQuery("from Car C WHERE C.carID = "+ parameter);
+            List<Car> car = q.list();
+            commit();
+            return car.get(0);
+        } catch (HibernateException e) {
+            rollback();
+            throw new CarException("Car not found", e);
+        }
+	}
 	
 	
 }

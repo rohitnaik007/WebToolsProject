@@ -5,16 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="js/jquery.min.js"></script>
-<script type="text/javascript">
-//all cars
-
-$(document).ready(function() {
-    $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
-    $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
-});
-
-</script>
 <style>
 
 th, td {
@@ -31,14 +21,11 @@ th, td {
 	 <br/>
     <div class="well well-sm">
         <strong>All Cars</strong>
-        <div class="btn-group">
-            <a href="#" id="list" class="btn btn-default btn-sm">List</a> <a href="#" id="grid" class="btn btn-default btn-sm">Grid</a>
-        </div>
     </div>
     	<c:forEach var="car" items="${cars}">
          <div class="item  col-xs-4 col-lg-4">
             <div class="thumbnail">
-                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                <img class="group list-group-image" src="${car.imageSrc}" alt="" />
                 <div class="caption">
                     <h4 class="group inner list-group-item-heading">
                        ${car.brand} ${car.modelNo}</h4>
@@ -54,7 +41,7 @@ th, td {
                                 $${car.price}</p>
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                            <a class="btn btn-success" href="${contextPath}/addToCart?id=${car.carID}">Add to cart</a>
                         </div>
                     </div>
                 </div>

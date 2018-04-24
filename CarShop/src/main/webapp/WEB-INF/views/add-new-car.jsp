@@ -69,6 +69,11 @@ th, td {
 				<td><form:input  class="span3"  path="brand" size="30" required="required" />
 					<font color="red"><form:errors path="brand" /></font></td>
 			</tr>
+			
+			<tr>
+				<td>Add Image URL:</td>
+				<td><form:input  class="span3" path="imageSrc" size="30" required="required" /><font color="red"><form:errors path="imageSrc" /></font></td>
+			</tr>
 
 			<tr>
 				<td>Model No:</td>
@@ -92,7 +97,7 @@ th, td {
 
 			<tr>
 				<td>Price:</td>
-				<td><form:password  class="span3"  path="price" size="30"
+				<td><form:input  class="span3"  path="price" size="30"
 						required="required" /> <font color="red"><form:errors
 							path="price" /></font></td>
 			</tr>
