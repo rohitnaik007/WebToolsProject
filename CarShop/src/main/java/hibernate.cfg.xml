@@ -13,7 +13,7 @@
 
 		<mapping class="com.carshop.mycarapp.pojo.User" />
 		
-		<mapping class="com.carshop.mycarapp.pojo.Person" />
+		<mapping class="com.carshop.mycarapp.pojo.UserRole" />
 	
 <mapping class="com.carshop.mycarapp.pojo.Car" />
 <mapping class="com.carshop.mycarapp.pojo.Role" />

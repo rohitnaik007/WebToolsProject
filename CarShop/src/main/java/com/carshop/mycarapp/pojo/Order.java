@@ -2,12 +2,15 @@ package com.carshop.mycarapp.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name="order_table")
@@ -18,8 +21,10 @@ public class Order {
 	@Column(name = "orderID", unique=true, nullable = false)
 	private long orderID;
 	
-	@Column(name = "userID")
-	private long userID;
+	@Autowired
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userID")
+    private User user;
 	
 	@Column(name ="shippingAddress")
 	private String shippingAddress;
@@ -36,6 +41,18 @@ public class Order {
 	@Column(name ="deliverydate")
 	private String deliverydate;	
 	
+//	@OneToMany(cascade = CascadeType.ALL,	           
+//            mappedBy = "order")
+//	private List<OrderItems> orderItems;
+//	
+//	public List<OrderItems> getOrderItems() {
+//		return orderItems;
+//	}
+//
+//	public void setOrderItems(List<OrderItems> orderItems) {
+//		this.orderItems = orderItems;
+	//}
+
 	public Order(){
 		
 	}
@@ -48,12 +65,12 @@ public class Order {
 		this.orderID = orderID;
 	}
 
-	public long getUserID() {
-		return userID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserID(long userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getShippingAddress() {

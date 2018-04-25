@@ -82,7 +82,12 @@
 								
 								<strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
 							</div>
-							<a href="${contextPath}/login" class="text-uppercase">Login</a> / <a href="${contextPath}/registerPage" class="text-uppercase">Join</a>
+							<c:if test="${user==null}">
+							<a href="${contextPath}/login" class="text-uppercase">Login</a> / <a href="${contextPath}/registerPage" class="text-uppercase">Register</a>
+								</c:if>	
+							<c:if test="${user!=null}">
+							<a class="text-uppercase">${user.username}</a> / <a href="${contextPath}/logout" class="text-uppercase">Log out</a>
+								</c:if>								
 							<ul class="custom-menu">
 								<li><a href="${contextPath}/accountDetails"><i class="fa fa-user-o"></i> My Account</a></li>							
 								<li><a href="${contextPath}/shoppingCart"><i class="fa fa-check"></i> My Cart</a></li>

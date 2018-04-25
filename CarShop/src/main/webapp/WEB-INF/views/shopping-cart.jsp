@@ -11,7 +11,7 @@ th, td {
     padding: 10px !important;
 }
 </style>
-<title>All Cars</title>
+<title>Shopping Cart</title>
 </head>
 <body>
   <jsp:include page="header.jsp" />
@@ -20,7 +20,7 @@ th, td {
 	 <div class="container">
 	 <br/>
     <div class="well well-sm">
-        <strong>All Cars</strong>
+        <strong>Shopping Cart</strong>
     </div>
     						<div class="col-md-12">
 						<div class="order-summary clearfix">
@@ -49,8 +49,8 @@ th, td {
 											</ul>
 										</td>
 										<td class="price text-center"><strong>$ ${cart.price}</strong></td>
-										<td class="qty text-center"><input class="input" type="number" value="${cart.quantity}"></td>
-										<td class="total text-center"><strong class="primary-color">$ ${cart.price}</strong></td>
+										<td class="qty text-center"><strong>${cart.quantity}</strong></td>
+										<td class="total text-center"><strong class="primary-color">$ ${cart.amount}</strong></td>
 										<td class="text-right"><a href="${contextPath}/removeFromCart?id=${cart.id}"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></a></td>
 									</tr>	
 									 </c:forEach>								
@@ -58,30 +58,23 @@ th, td {
 								<tfoot>
 									<tr>
 										<th class="empty" colspan="3"></th>
-										<th>SUBTOTAL</th>
-										<th colspan="2" class="sub-total">$97.50</th>
-									</tr>
-									<tr>
-										<th class="empty" colspan="3"></th>
-										<th>SHIPING</th>
-										<td colspan="2">Free Shipping</td>
-									</tr>
-									<tr>
-										<th class="empty" colspan="3"></th>
 										<th>TOTAL</th>
-										<th colspan="2" class="total">$97.50</th>
+										<th colspan="2" class="total">$ ${totalAmount}</th>
 									</tr>
 								</tfoot>
 							</table>
 							<div class="pull-right">
-								<button class="primary-btn">Place Order</button>
+							<c:if test="${totalAmount != 0}">
+							<a href="${contextPath}/reviewOrder"><button class="primary-btn">Review Order</button></a>
+								</c:if>
 							</div>
+							
 						</div>
 
 					</div>
 </div>
 		
-						
+			<br/>		
 					
 	
 	

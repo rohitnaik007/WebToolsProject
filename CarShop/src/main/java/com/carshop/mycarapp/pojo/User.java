@@ -2,12 +2,9 @@ package com.carshop.mycarapp.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,14 +23,37 @@ public class User{
 
 	@Column(name = "password")
 	private String password;	
+//
+//	@OneToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "userroleID")
+//    private UserRole userRole;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "personID")
-    private Person person;
+//	
+//	@OneToMany(cascade = CascadeType.ALL,	           
+//            mappedBy = "user")
+//	private List<Order> orderList;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "roleID")
-    private Role role;
+		
+	@Column(name = "firstName")
+	private String firstName;
+	
+	@Column(name ="lastName")
+	private String lastName;
+	
+	
+	@Column(name ="address")
+	private String address;
+	
+	
+	@Column(name ="phone")
+	private String phone;
+	
+	@Column(name = "email")
+	private String email;
+	
+
+	@Column(name = "userCreationDate")
+	private String usercreationDate;
 	
 	public User(String username, String password) {
 		this.username = username;
@@ -42,6 +62,14 @@ public class User{
 
 	public User() {
 	
+	}
+
+	public long getUserID() {
+		return userID;
+	}
+
+	public void setUserID(long userID) {
+		this.userID = userID;
 	}
 
 	public String getUsername() {
@@ -60,33 +88,70 @@ public class User{
 		this.password = password;
 	}
 
-	public Person getPerson() {
-		return person;
+//	public UserRole getUserRole() {
+//		return userRole;
+//	}
+//
+//	public void setUserRole(UserRole userRole) {
+//		this.userRole = userRole;
+//	}
+
+//	public List<Order> getOrderList() {
+//		return orderList;
+//	}
+//
+//	public void setOrderList(List<Order> orderList) {
+//		this.orderList = orderList;
+//	}
+
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public long getUserID() {
-		return userID;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setUserID(long userID) {
-		this.userID = userID;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public Role getRoleID() {
-		return role;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setRoleID(Role roleID) {
-		this.role = roleID;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUsercreationDate() {
+		return usercreationDate;
+	}
+
+	public void setUsercreationDate(String usercreationDate) {
+		this.usercreationDate = usercreationDate;
 	}
 
 	
-
-	
-
 	
 }

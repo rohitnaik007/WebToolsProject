@@ -2,12 +2,15 @@ package com.carshop.mycarapp.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name="orderItems_table")
@@ -16,16 +19,21 @@ public class OrderItems {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "orderItemsID", unique=true, nullable = false)
-	private long personID;
+	private long orderItemsID;
 	
-	@Column(name = "orderID")
-	private String orderID;
+//	@Column(name = "orderID")
+//	private String orderID;
+	
+	@Autowired
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "orderID")
+    private Order order;
 	
 	@Column(name ="carID")
-	private String carID;
+	private long carID;
 	
 	@Column(name ="price")
-	private String price;
+	private int price;
 	
 	@Column(name ="color")
 	private String color;
@@ -34,36 +42,38 @@ public class OrderItems {
 		
 	}
 
-	public long getPersonID() {
-		return personID;
+	public long getorderItemsID() {
+		return orderItemsID;
 	}
 
-	public void setPersonID(long personID) {
-		this.personID = personID;
+	public void setOrderID(long orderItemsID) {
+		this.orderItemsID = orderItemsID;
 	}
 
-	public String getOrderID() {
-		return orderID;
+
+
+	public Order getOrder() {
+		return order;
 	}
 
-	public void setOrderID(String orderID) {
-		this.orderID = orderID;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
-	public String getCarID() {
+	public long getCarID() {
 		return carID;
 	}
 
-	public void setCarID(String carID) {
+	public void setCarID(long carID) {
 		this.carID = carID;
 	}
 
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
-		this.price = price;
+	public void setPrice(int i) {
+		this.price = i;
 	}
 
 	public String getColor() {

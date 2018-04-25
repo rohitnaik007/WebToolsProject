@@ -48,6 +48,7 @@ public class ShoppingCartController {
 	public ModelAndView viewShoppingCart(HttpSession session) {
 		 ModelAndView mav = new ModelAndView("shopping-cart");
     mav.addObject("listCart",  (List<ShoppingCart>) session.getAttribute("cart"));   
+    mav.addObject("totalAmount", getTotal((List<ShoppingCart>) session.getAttribute("cart")));
 	return mav;
 }
 
@@ -68,6 +69,7 @@ public class ShoppingCartController {
         	 for (ShoppingCart c : list) {
                  if (c.getId()==car.getCarID()) {
                     c.setQuantity(c.getQuantity() + 1);
+                    c.setAmount(c.getQuantity()*c.getPrice());
                      isPresent =true;
                  }
               //   total = total.add(c.getPrice().multiply(new BigDecimal(c.getQuantity())));
@@ -81,11 +83,13 @@ public class ShoppingCartController {
             cart.setPrice(car.getPrice());
             cart.setImageSrc(car.getImageSrc());
             cart.setQuantity(1);
+            cart.setAmount(cart.getQuantity()*cart.getPrice());
             list.add(cart);
         	}
             //BigDecimal total = addToCart(list, cart);
             
             session.setAttribute("cart", list);
+            mav.addObject("totalAmount", getTotal(list));
         }
         mav.addObject("listCart", list);
        
@@ -103,7 +107,7 @@ public class ShoppingCartController {
        
         List<ShoppingCart> list = (List<ShoppingCart>) session.getAttribute("cart");
        
-        if (list != null) {
+        if (null!=list && list.size()>0) {
         	ShoppingCart temp=null;
         	 for (ShoppingCart c : list) {
                  if (c.getId()==id) {
@@ -120,6 +124,7 @@ public class ShoppingCartController {
             //BigDecimal total = addToCart(list, cart);
             
             session.setAttribute("cart", list);
+            mav.addObject("totalAmount", getTotal(list));
         }
         mav.addObject("listCart", list);
        
@@ -127,5 +132,18 @@ public class ShoppingCartController {
 		return mav;
 	}	
 
-	
+	int getTotal(List<ShoppingCart> list)
+	{
+		int total=0;
+		if (null!=list && list.size()>0) {
+		 for (ShoppingCart c : list) {
+            
+                	total = total +c.getAmount();
+                
+                 
+             }
+		}
+          //   total = total.add(c.getPrice().multiply(new BigDecimal(c.getQuantity())));
+         return total;
+	}
 }

@@ -1,9 +1,8 @@
 package com.carshop.mycarapp.controller;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -16,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.carshop.mycarapp.dao.CarDAO;
+import com.carshop.mycarapp.dao.RoleDAO;
 import com.carshop.mycarapp.dao.UserDAO;
-import com.carshop.mycarapp.pojo.Car;
-import com.carshop.mycarapp.pojo.User;
 import com.carshop.mycarapp.exception.UserException;
+import com.carshop.mycarapp.pojo.User;
+import com.carshop.mycarapp.pojo.UserRole;
 import com.carshop.mycarapp.validator.CarValidator;
 import com.carshop.mycarapp.validator.UserValidator;
 
@@ -43,6 +43,11 @@ public class UserController {
 	@Autowired
 	@Qualifier("carDao")
 	CarDAO carDao;
+	
+	@Autowired
+	@Qualifier("roleDao")
+	RoleDAO roleDao;
+	
 
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
@@ -90,6 +95,26 @@ public class UserController {
 
 	}
 	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	protected String logoutUser(HttpServletRequest request) throws Exception {
+
+		HttpSession session = (HttpSession) request.getSession();
+		
+		try {
+
+			session.invalidate();
+			
+			return "home";
+
+		} catch (Exception e) {
+			System.out.println("Exception: " + e.getMessage());
+			session.setAttribute("errorMessage", "error while login");
+			return "error";
+		}
+
+	}
+	
+	
 
 	@RequestMapping(value = "/registerPage", method = RequestMethod.GET)
 	protected ModelAndView registerUserPage() throws Exception {
@@ -113,8 +138,13 @@ public class UserController {
 		try {
 
 			System.out.print("registerNewUser");
-
+			
 			User u = userDao.register(user);
+			
+			UserRole ur = new UserRole();			
+			ur.setRole(roleDao.get("CUSTOMER"));
+			ur.setUser(u);		
+			userDao.registerUserRole(ur);
 			
 			request.getSession().setAttribute("user", u);
 			

@@ -15,7 +15,14 @@ import javax.persistence.Table;
 	    private int price;
 	    private int quantity;
 	    private String imageSrc;	    
-	        
+	    private int amount;	       
+	    
+		public int getAmount() {
+			return amount;
+		}
+		public void setAmount(int amount) {
+			this.amount = amount;
+		}
 		public String getImageSrc() {
 			return imageSrc;
 		}

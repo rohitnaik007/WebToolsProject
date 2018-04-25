@@ -24,21 +24,15 @@ public class Role {
 	@Column(name = "roleName")
 	private String roleName;	
 	
-	@OneToOne(cascade = CascadeType.ALL,	           
-            mappedBy = "role")
-	private User user;
+//	@OneToOne(cascade = CascadeType.ALL,	           
+//            mappedBy = "role")
+//	private UserRole userRole;
 	
 	public Role(){
 		
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
 
 	public long getRoleID() {
 		return roleID;
