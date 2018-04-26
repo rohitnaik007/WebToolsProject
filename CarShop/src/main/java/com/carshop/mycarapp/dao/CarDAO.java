@@ -1,6 +1,7 @@
 package com.carshop.mycarapp.dao;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -70,6 +71,38 @@ public class CarDAO extends DAO{
             List<Car> car = q.list();
             commit();
             return car.get(0);
+        } catch (HibernateException e) {
+            rollback();
+            throw new CarException("Car not found", e);
+        }
+	}
+	
+	
+	
+	public List<Car> searchCar(String parameter) throws Exception {
+		// TODO Auto-generated method stub
+		try {
+			
+            begin();
+            Query q = getSession().createQuery("from Car C WHERE C.brand LIKE :parameter OR C.modelNo LIKE :parameter OR C.description LIKE :parameter");
+            q.setString("parameter","%"+ parameter+"%");
+            List<Car> car = q.list();
+            commit();
+            return car;
+        } catch (HibernateException e) {
+            rollback();
+            throw new CarException("Car not found", e);
+        }
+	}
+
+	public ArrayList<Car> getMoviesFromModel(String searchQuery) throws CarException {
+try {
+			begin();
+            Query q = getSession().createQuery("from Car C WHERE C.modelNo LIKE :parameter");
+            q.setString("parameter", "%"+searchQuery+"%");
+            List<Car> car = q.list();
+            commit();
+            return (ArrayList<Car>) car;
         } catch (HibernateException e) {
             rollback();
             throw new CarException("Car not found", e);

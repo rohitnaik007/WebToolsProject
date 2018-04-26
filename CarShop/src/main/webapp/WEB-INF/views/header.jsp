@@ -67,8 +67,8 @@
 
 					<!-- Search -->
 					<div class="header-search">
-						<form>
-							<input class="input search-input" type="text" placeholder="Find a car">
+						<form method="post" action="${contextPath}/searchCarNow">
+							<input class="input search-input" type="text" placeholder="Find a car" name="rselection">
 							<button class="search-btn"><i class="fa fa-search"></i></button>
 						</form>
 					</div>
@@ -91,8 +91,12 @@
 							<ul class="custom-menu">
 								<li><a href="${contextPath}/accountDetails"><i class="fa fa-user-o"></i> My Account</a></li>							
 								<li><a href="${contextPath}/shoppingCart"><i class="fa fa-check"></i> My Cart</a></li>
+								<c:if test="${user==null}">
 								<li><a href="${contextPath}/login"><i class="fa fa-unlock-alt"></i> Login</a></li>
+								</c:if>
+									<c:if test="${user==null}">
 								<li><a href="${contextPath}/registerPage"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+									</c:if>
 							</ul>
 						</li>
 						<!-- /Account -->
@@ -125,7 +129,7 @@
 						<li><a href="${contextPath}/allCars">All Cars</a></li>						
 						<li><a href="${contextPath}/searchCar">Search Cars</a></li>
 						<li><a href="${contextPath}/shoppingCart">Shopping Cart</a></li>
-						<li><a href="${contextPath}/adminhome">Admin Panel</a></li>
+						<c:if test="${role=='ADMIN'}"><li><a href="${contextPath}/adminhome">Admin Panel</a></li></c:if>
 				</ul>
 				</div>
 				<!-- menu nav -->

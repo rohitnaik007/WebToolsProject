@@ -71,73 +71,29 @@ public class CarController {
 			} else {
 				String searchQuery = request.getParameter("keyword");
 				if (filter.equals("0")) {
-					// Search by title
-					//carList = (ArrayList<Car>) carDao.getMoviesFromTitle(searchQuery);
+					// Search by Brand
+					//carList = (ArrayList<Car>) carDao.getCarFromBrand(searchQuery);
 				} else if (filter.equals("1")) {
-					// Search by actor
-					//carList = (ArrayList<Car>) carDao.getMoviesFromActor(searchQuery);
+					// Search by Model
+					carList = (ArrayList<Car>) carDao.getMoviesFromModel(searchQuery);
 				} else {
-					// Search by actresscae
-					//carList = (ArrayList<Car>) carDao.getMoviesFromActress(searchQuery);
+					// Search by Price
+					//carList = (ArrayList<Car>) carDao.getMoviesFromPrice(searchQuery);
 				}
 				return new ModelAndView("car-results", "resultList", carList);
 			}
 		}
 		
-		@RequestMapping(value = "/addnewcar", method = RequestMethod.GET)
-		protected ModelAndView adminAddNewCar() throws Exception {
-			System.out.print("add new car");
-
-			return new ModelAndView("add-new-car", "car", new Car());
-
-		}
-		@RequestMapping(value = "/addnewcar", method = RequestMethod.POST)
-		protected ModelAndView adminAddNewCar(HttpServletRequest request,  @ModelAttribute("car") Car car, BindingResult result) throws Exception {
-
-			carValidator.validate(car, result);
-
-			if (result.hasErrors()) {
-				return new ModelAndView("add-new-car", "car", car);
-			}
-
-			try {
-
-				System.out.print("registerNewcar");				
-				Car c = carDao.addcar(car);				
-			
-				request.getSession().setAttribute("car", c);
-				
-				return new ModelAndView("car-added-success", "car", c);
-
-			} catch (Exception e) {
-				System.out.println("Exception: " + e.getMessage());
-				return new ModelAndView("error", "errorMessage", "error while login");
-			}
-			
-		}
+	
+			@RequestMapping(value = "/searchCarNow", method = RequestMethod.POST)
+			protected ModelAndView searchCarNow(HttpServletRequest request) throws Exception {
+				String searchQuery = (String) request.getParameter("rselection");
+				ArrayList<Car> carList=null;
+				carList = (ArrayList<Car>) carDao.searchCar(searchQuery);
+				return new ModelAndView("car-results", "resultList", carList);
+				}
 		
-		
-		
-		@RequestMapping(value = "/adminhome", method = RequestMethod.GET)
-		protected String adminHome(HttpServletRequest request) throws Exception {
-			return "adminhome";
-		}
-		
-		@RequestMapping(value = "/allCars", method = RequestMethod.GET)
-		public ModelAndView addCategory(HttpServletRequest request) throws Exception {
 
-			try {			
-				
-				List<Car> cars = carDao.list();
-				return new ModelAndView("all-cars", "cars", cars);
-				
-			} catch (CarException e) {
-				System.out.println(e.getMessage());
-				return new ModelAndView("error", "errorMessage", "error while login");
-			}
-			
-			
-		}
 		
 
 }

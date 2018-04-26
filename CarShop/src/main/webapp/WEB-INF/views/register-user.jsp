@@ -59,6 +59,18 @@ th, td {
 						type="email" required="required" /> <font color="red"><form:errors
 							path="email" /></font></td>
 			</tr>
+	<tr>
+				<td>Address:</td>
+				<td><form:input  class="span3"  path="address" size="30"
+						 required="required" /> <font color="red"><form:errors
+							path="address" /></font></td>
+			</tr>
+	<tr>
+				<td>Phone:</td>
+				<td><form:input  class="span3"  path="phone" size="30"
+						required="required" /> <font color="red"><form:errors
+							path="phone" /></font></td>
+			</tr>
 
 			<tr>
 			<td colspan="2"> <button class="btn btn-warning" type="submit">Register User</button></td>

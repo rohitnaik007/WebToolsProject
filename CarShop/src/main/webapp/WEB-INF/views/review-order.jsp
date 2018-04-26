@@ -28,19 +28,19 @@ th, td {
 								<h3 class="title">Billing Details</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="First Name">
+							First Name:	<input class="input" type="text" name="first-name" placeholder="${user.firstName}" disabled>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Last Name">
+								Last Name: <input class="input" type="text" name="last-name" placeholder="${user.lastName}" disabled>
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email">
+								Email:<input class="input" type="email" name="email" placeholder="${user.email}" disabled>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="address" placeholder="Address">
+								Address:<input class="input" type="text" name="address" value="${user.address}" >
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="phone" placeholder="Phone">
+								Phone <input class="input" type="text" name="phone" placeholder="${user.phone}" disabled>
 							</div>	
 						</div>
 					</div>
@@ -51,7 +51,7 @@ th, td {
 								<h4 class="title">Shipping Methods</h4>
 							</div>
 							<div class="input-checkbox">
-								<input type="radio" name="shipping" id="shipping-1" checked>
+								<input type="radio" name="shipping" id="shipping-1" value="Free Shipment to Address" checked>
 								<label for="shipping-1">Free Shipment to Address</label>
 								<div class="caption">
 									<p>Will Ship the car/cars to address specified in seven days.
@@ -59,7 +59,7 @@ th, td {
 								</div>
 							</div>
 							<div class="input-checkbox">
-								<input type="radio" name="shipping" id="shipping-2">
+								<input type="radio" name="shipping" id="shipping-2" value="Store Pickup">
 								<label for="shipping-2">Store Pickup</label>
 								<div class="caption">
 									<p>Pickup the car/cars from our store at 360 Huntington Ave, Boston - 02115, Massachussets, USA.
@@ -74,11 +74,11 @@ th, td {
 							</div>
 							<div class="form-group">
 								<div class="input-checkbox">
-								<input type="radio" name="visa" id="visa" checked>
+								<input type="radio" name="card" value="visa" checked>
 								<label for="shipping-1">Visa</label>
 								
 								<div class="input-checkbox">
-								<input type="radio" name="mastercard" id="mastercard" checked>
+								<input type="radio" name="card" value="mastercard">
 								<label for="shipping-1">MasterCard</label>
 								
 							</div>
@@ -128,8 +128,7 @@ th, td {
 										</td>
 										<td class="price text-center"><strong>$ ${cart.price}</strong></td>
 										<td class="qty text-center"><strong>${cart.quantity}</strong></td>
-										<td class="total text-center"><strong class="primary-color">$ ${cart.amount}</strong></td>
-										<td class="text-right"><a href="${contextPath}/removeFromCart?id=${cart.id}"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></a></td>
+										<td class="total text-center"><strong class="primary-color">$ ${cart.amount}</strong></td>										
 									</tr>	
 									 </c:forEach>								
 								</tbody>

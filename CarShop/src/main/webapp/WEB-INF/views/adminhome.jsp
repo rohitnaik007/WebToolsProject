@@ -35,11 +35,37 @@
 			<!-- /home wrap -->
 		
 		<!-- /container -->
-	</div>
+</div>
 	<!-- /HOME -->
 
-	<!-- section -->
-	  
+	 
+	 <!-- section -->
+	  <div id="home">
+		<!-- container -->
+		<div class="container">
+			<!-- home wrap -->
+			<div class="home-wrap">
+				<!-- home slick -->
+				
+	<img src="./img/banner10.jpg" alt="">
+	<img src="./img/banner01.jpg" alt="">
+		<!-- container -->
+<!-- 		<div class="container"> -->
+		<div class="col-md-4 col-sm-6">
+						<div class="span3 well">
+     
+   
+
+</div></div></div></div>
+</div>
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 	</div>
    <jsp:include page="footer.jsp" />
 </body>
 </html>

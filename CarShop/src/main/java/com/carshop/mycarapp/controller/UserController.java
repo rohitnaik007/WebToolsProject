@@ -18,6 +18,7 @@ import com.carshop.mycarapp.dao.CarDAO;
 import com.carshop.mycarapp.dao.RoleDAO;
 import com.carshop.mycarapp.dao.UserDAO;
 import com.carshop.mycarapp.exception.UserException;
+import com.carshop.mycarapp.pojo.Role;
 import com.carshop.mycarapp.pojo.User;
 import com.carshop.mycarapp.pojo.UserRole;
 import com.carshop.mycarapp.validator.CarValidator;
@@ -82,8 +83,10 @@ public class UserController {
 				session.setAttribute("errorMessage", "UserName/Password does not exist");
 				return "error";
 			}
-			
+			String role = roleDao.getRoleNameByUserId(u.getUserID());
+			session.setAttribute("role", role);
 			session.setAttribute("user", u);
+			System.out.println(role);
 			
 			return "home";
 

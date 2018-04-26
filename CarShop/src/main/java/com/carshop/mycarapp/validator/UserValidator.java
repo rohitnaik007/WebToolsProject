@@ -21,7 +21,8 @@ public class UserValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "error.invalid.user", "User Name Required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "error.invalid.password", "Password Required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "error.invalid.email","Email Required");
-		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "error.invalid.address","Address Required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phone", "error.invalid.phone","Phone Required");
 		// check if user exists
 		
 	}

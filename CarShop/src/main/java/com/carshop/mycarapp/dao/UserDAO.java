@@ -18,10 +18,12 @@ public class UserDAO extends DAO {
 	public User get(String username, String password) throws UserException {
 		try {
 			begin();
+			User user =null;
 			Query q = getSession().createQuery("from User where username = :username and password = :password");
 			q.setString("username", username);
-			q.setString("password", password);			
-			User user = (User) q.list().get(0);
+			q.setString("password", password);	
+			if(q.list().size()>0) {
+			 user = (User) q.list().get(0);}
 			commit();
 			return user;
 		} catch (HibernateException e) {

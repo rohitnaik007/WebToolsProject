@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,6 @@ import com.carshop.mycarapp.pojo.Order;
 import com.carshop.mycarapp.pojo.OrderItems;
 import com.carshop.mycarapp.pojo.ShoppingCart;
 import com.carshop.mycarapp.pojo.User;
-
 
 
 @Controller
@@ -62,8 +62,8 @@ public class OrderController {
 					 List<OrderItems> oItem = new ArrayList<>();
 					 Date d  = new Date();
 					 o.setOrderplacedate(d.toString());
-					// o.setModeofdelivery(request.getAttribute("modeofdelivery").toString());
-					 o.setShippingAddress(u.getAddress());
+					 o.setModeofdelivery(request.getParameter("shipping").toString());
+					 o.setShippingAddress(u.getAddress());	
 					 o.setStatus("Open");
 					 o.setUser(u);
 					 Calendar cal = Calendar.getInstance();
@@ -83,8 +83,13 @@ public class OrderController {
 		        		o1.setOrder(or);
 		        		orderDao.addOrderItem(o1);
 		                 }
-					 session.removeAttribute("cart");
-					 return new ModelAndView("view-invoice", "order", o);
+					
+					 ModelAndView mav = new ModelAndView("view-invoice");
+					    mav.addObject("order", o);   
+					    mav.addObject("totalAmount", getTotal((List<ShoppingCart>) session.getAttribute("cart")));
+					    session.removeAttribute("cart");
+					 //sendEmail(u.getEmail(), "Order Placed Successfully with Order # "+or.getOrderID()+" and will be available on "+or.getDeliverydate());
+					 return mav;
 				
 			} catch (Exception e) {
 				System.out.println("Exception: " + e.getMessage());
@@ -108,5 +113,8 @@ public class OrderController {
 	          //   total = total.add(c.getPrice().multiply(new BigDecimal(c.getQuantity())));
 	         return total;
 		}
+		
+	
+
 		
 }

@@ -9,33 +9,31 @@
 </head>
 <body>
   <jsp:include page="header.jsp" />
-	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
-	<h2>View Car Results</h2>
-
-	<div width="100%">
-	<h2>Searching Movies</h2>
+	<c:set var="contextPath" value="${pageContext.request.contextPath}" /><div width="100%">
 		<c:if test="${not empty error}">
 			<div class="error">${error}</div>
 		</c:if>
 		<c:choose>
-			<c:when test="${fn:length(resultList) == 0}">No results were found for your search</c:when>
+			<c:when test="${fn:length(resultList) == 0}"><h2>No results were found for your search</h2></c:when>
 			<c:when test="${fn:length(resultList) != 0}">
+			<br/>
 				<h3>Your search resulted in ${fn:length(resultList)} hits:</h3>
-				<table>
-					<th>Image</th>
+				<table class="table table-hover">
+					
 					<th>Brand</th>
 					<th>ModelNo</th>
 					<th>Description</th>
 					<th>Price</th>
+					<th>Make Year</th>
 					
 					<c:forEach items="${resultList}" var="item">
 						<tr>
-						<td>${item.imageSrc}</td>
+						
 							<td>${item.brand}</td>							
 							<td>${item.modelNo}</td>
 							<td>${item.description}</td>
-							<td>${item.price}</td>							
+							<td>${item.price}</td>	
+							<td>${item.makeYear}</td>						
 						</tr>
 					</c:forEach>
 					<tr>
