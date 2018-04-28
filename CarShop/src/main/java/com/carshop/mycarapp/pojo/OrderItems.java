@@ -21,9 +21,6 @@ public class OrderItems {
 	@Column(name = "orderItemsID", unique=true, nullable = false)
 	private long orderItemsID;
 	
-//	@Column(name = "orderID")
-//	private String orderID;
-	
 	@Autowired
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "orderID")

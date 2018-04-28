@@ -1,9 +1,13 @@
 package com.carshop.mycarapp.dao;
 
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 
 import com.carshop.mycarapp.exception.CarException;
+import com.carshop.mycarapp.pojo.Car;
 import com.carshop.mycarapp.pojo.Order;
 import com.carshop.mycarapp.pojo.OrderItems;
 
@@ -40,5 +44,19 @@ public class OrderDAO extends DAO{
 		}
 	}
 	
+	public List<OrderItems> list() throws CarException{
+    	
+    	try {
+            begin();
+            Query q = getSession().createQuery("from OrderItems");
+            List<OrderItems> car = q.list();
+            commit();
+            return car;
+        } catch (HibernateException e) {
+            rollback();
+            throw new CarException("Car not found", e);
+        }
+    	
+    }
 	
 }

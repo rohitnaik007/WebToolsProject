@@ -31,6 +31,11 @@
 	</servlet-mapping>
 
 
+<!-- To prevent XSS attacks in all form pages -->
+    <context-param>
+   <param-name>defaultHtmlEscape</param-name>
+   <param-value>true</param-value>
+    </context-param>
 	
 
 </web-app>

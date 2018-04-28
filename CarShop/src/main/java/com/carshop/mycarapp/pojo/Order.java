@@ -41,18 +41,6 @@ public class Order {
 	@Column(name ="deliverydate")
 	private String deliverydate;	
 	
-//	@OneToMany(cascade = CascadeType.ALL,	           
-//            mappedBy = "order")
-//	private List<OrderItems> orderItems;
-//	
-//	public List<OrderItems> getOrderItems() {
-//		return orderItems;
-//	}
-//
-//	public void setOrderItems(List<OrderItems> orderItems) {
-//		this.orderItems = orderItems;
-	//}
-
 	public Order(){
 		
 	}

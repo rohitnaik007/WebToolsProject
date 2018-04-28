@@ -101,5 +101,18 @@ public class UserDAO extends DAO {
 			throw new UserException("Exception while creating user: " + e.getMessage());
 		}
 	}
+
+	public boolean checkIfUserExists(User user) {
+		begin();		
+		Query q = getSession().createQuery("from User where username = :username or email= :emailId");
+		q.setString("username", user.getUsername());
+		q.setString("emailId", user.getEmail());
+		commit();
+		if(q.list().size()==0) {
+		 return false;}
+		
+		
+		return true;
+	}
 	
 }

@@ -20,8 +20,9 @@
 				<div class="category-nav">
 					<span class="category-header">ADMIN ACTIONS <i class="fa fa-list"></i></span>
 					<ul class="category-list">						
-						<li><a href="${contextPath}/addnewcar">ADD NEW CAR</a></li>						
-						<li><a href="#">VIEW CAR LIST</a></li>
+						<li><a href="${contextPath}/addnewcar">ADD NEW CAR</a></li>		
+						<li><a href="${contextPath}/DeleteCar">DELETE CAR</a></li>				
+						<li><a href="${contextPath}/getchart">VIEW ORDER CHART</a></li>
 						<li><a href="#">VIEW USERS</a></li>
 						<li><a href="#">ORDERS</a></li>
 <!-- 						<li><a href="#"></a></li> -->
@@ -48,11 +49,7 @@
 				<!-- home slick -->
 				
 	<img src="./img/banner10.jpg" alt="">
-	<img src="./img/banner01.jpg" alt="">
-		<!-- container -->
-<!-- 		<div class="container"> -->
-		<div class="col-md-4 col-sm-6">
-						<div class="span3 well">
+
      
    
 

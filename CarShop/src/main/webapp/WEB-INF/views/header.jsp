@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>E-SHOP</title>
+	<title>C-SHOP</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -39,7 +39,40 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+<script>
+	function ajaxEvent() {
+		
+		var xmlHttp;
+		try // Firefox, Opera 8.0+, Safari
+		{
+			xmlHttp = new XMLHttpRequest();
+		} catch (e) {
+			try // Internet Explorer
+			{
+				xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				try {
+					xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {
+				//	alert("Your browser does not support AJAX!");
+					return false;
+				}
+			}
+		}
 
+		xmlHttp.onreadystatechange = function() {
+			if (xmlHttp.readyState == 4) {
+				//document.getElementById("searchDiv").innerHTML = xmlHttp.responseText;
+				alert( xmlHttp.responseText+" Results Found");
+			}
+		}
+		
+		var queryString = document.getElementById("rselection").value;
+
+		xmlHttp.open("GET","http://localhost:8080/mycarapp/ajaxservice.htm?rselection="+queryString, true);
+		xmlHttp.send();
+	}
+</script>
 
 </head>
 
@@ -68,8 +101,9 @@
 					<!-- Search -->
 					<div class="header-search">
 						<form method="post" action="${contextPath}/searchCarNow">
-							<input class="input search-input" type="text" placeholder="Find a car" name="rselection">
-							<button class="search-btn"><i class="fa fa-search"></i></button>
+							<input class="input search-input" type="text" placeholder="Find a car" name="rselection" id="rselection" onkeyup="ajaxEvent()" >
+							<button class="search-btn" id="searchDiv"><i class="fa fa-search"></i></button>							
+													
 						</form>
 					</div>
 					<!-- /Search -->

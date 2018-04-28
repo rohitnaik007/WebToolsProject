@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
+
 import com.carshop.mycarapp.exception.CarException;
 import com.carshop.mycarapp.pojo.Car;
 
@@ -39,6 +41,18 @@ public class CarDAO extends DAO{
 		try {
 			begin();
 			getSession().delete(car);
+			commit();
+		} catch (HibernateException e) {
+			rollback();
+			throw new CarException("Could not delete Car ", e);
+		}
+	}
+	public void deleteCarById(String car) throws Exception {
+		try {
+			begin();
+			 Car c = (Car )getSession().createCriteria(Car.class).add(Restrictions.eq("carID", Long.parseLong(car))).uniqueResult();
+			 getSession().delete(c);
+
 			commit();
 		} catch (HibernateException e) {
 			rollback();
@@ -95,7 +109,7 @@ public class CarDAO extends DAO{
         }
 	}
 
-	public ArrayList<Car> getMoviesFromModel(String searchQuery) throws CarException {
+	public ArrayList<Car> getCarFromModel(String searchQuery) throws CarException {
 try {
 			begin();
             Query q = getSession().createQuery("from Car C WHERE C.modelNo LIKE :parameter");
@@ -108,6 +122,37 @@ try {
             throw new CarException("Car not found", e);
         }
 	}
+
+	public ArrayList<Car> getCarFromBrand(String searchQuery) throws CarException {
+
+try {
+			begin();
+            Query q = getSession().createQuery("from Car C WHERE C.brand LIKE :parameter");
+            q.setString("parameter", "%"+searchQuery+"%");
+            List<Car> car = q.list();
+            commit();
+            return (ArrayList<Car>) car;
+        } catch (HibernateException e) {
+            rollback();
+            throw new CarException("Car not found", e);
+        }
+	
+	}
+
+	public ArrayList<Car> getCarFromPrice(String searchQuery) throws CarException {
+
+try {
+			begin();
+            Query q = getSession().createQuery("from Car C WHERE C.price LIKE :parameter");
+            q.setString("parameter", "%"+searchQuery+"%");
+            List<Car> car = q.list();
+            commit();
+            return (ArrayList<Car>) car;
+        } catch (HibernateException e) {
+            rollback();
+            throw new CarException("Car not found", e);
+        }
+		}
 	
 	
 }

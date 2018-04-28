@@ -10,58 +10,44 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user_table")
 
-public class User{
+public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "userID", unique=true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "userID", unique = true, nullable = false)
 	private long userID;
-	
 
 	@Column(name = "userName")
 	private String username;
 
 	@Column(name = "password")
-	private String password;	
-//
-//	@OneToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "userroleID")
-//    private UserRole userRole;
+	private String password;
 
-//	
-//	@OneToMany(cascade = CascadeType.ALL,	           
-//            mappedBy = "user")
-//	private List<Order> orderList;
-	
-		
 	@Column(name = "firstName")
 	private String firstName;
-	
-	@Column(name ="lastName")
+
+	@Column(name = "lastName")
 	private String lastName;
-	
-	
-	@Column(name ="address")
+
+	@Column(name = "address")
 	private String address;
-	
-	
-	@Column(name ="phone")
+
+	@Column(name = "phone")
 	private String phone;
-	
+
 	@Column(name = "email")
 	private String email;
-	
 
 	@Column(name = "userCreationDate")
 	private String usercreationDate;
-	
+
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
 
 	public User() {
-	
+
 	}
 
 	public long getUserID() {
@@ -87,22 +73,6 @@ public class User{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-//	public UserRole getUserRole() {
-//		return userRole;
-//	}
-//
-//	public void setUserRole(UserRole userRole) {
-//		this.userRole = userRole;
-//	}
-
-//	public List<Order> getOrderList() {
-//		return orderList;
-//	}
-//
-//	public void setOrderList(List<Order> orderList) {
-//		this.orderList = orderList;
-//	}
 
 	public String getFirstName() {
 		return firstName;
@@ -152,6 +122,4 @@ public class User{
 		this.usercreationDate = usercreationDate;
 	}
 
-	
-	
 }

@@ -7,117 +7,114 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-	@Entity
-	@Table(name="car_table")
-	public class Car {
+@Entity
+@Table(name = "car_table")
+public class Car {
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name="carID", unique = true, nullable = false)
-	    private long carID;
-		
-		@Column(name="brand")
-	    private String brand;
-		
-		@Column(name="modelNo")
-	    private String modelNo;
-		
-		@Column(name="makeYear")
-	    private String makeYear;
-		
-		@Column(name="price")
-	    private int price;
-		
-		@Column(name="imageSrc")
-	    private String imageSrc;
-		
-		@Column(name="description")
-	    private String description;
-		
-		public long getCarID() {
-			return carID;
-		}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "carID", unique = true, nullable = false)
+	private long carID;
 
-		public void setCarID(long carID) {
-			this.carID = carID;
-		}
+	@Column(name = "brand")
+	private String brand;
 
-		public String getMakeYear() {
-			return makeYear;
-		}
+	@Column(name = "modelNo")
+	private String modelNo;
 
-		public void setMakeYear(String makeYear) {
-			this.makeYear = makeYear;
-		}
+	@Column(name = "makeYear")
+	private String makeYear;
 
-		public String getColorsAvailable() {
-			return colorsAvailable;
-		}
+	@Column(name = "price")
+	private int price;
 
-		public void setColorsAvailable(String colorsAvailable) {
-			this.colorsAvailable = colorsAvailable;
-		}
+	@Column(name = "imageSrc")
+	private String imageSrc;
 
-		@Column(name="colorsAvailable")
-	    private String colorsAvailable;
+	@Column(name = "description")
+	private String description;
 
-		public Car(){
-			
-		}
-		
-		public Car(String brand, String colorsAvailable, String description, String imageSrc, String makeYear,
-				String modelNo, int price) {
-			// TODO Auto-generated constructor stub
-			this.brand= brand;
-			this.colorsAvailable=colorsAvailable;
-			this.description=description;
-			this.imageSrc=imageSrc;
-			this.makeYear=makeYear;
-			this.modelNo=modelNo;
-			this.price=price;
-		}
+	public long getCarID() {
+		return carID;
+	}
 
-		public String getBrand() {
-			return brand;
-		}
+	public void setCarID(long carID) {
+		this.carID = carID;
+	}
 
-		public void setBrand(String brand) {
-			this.brand = brand;
-		}
+	public String getMakeYear() {
+		return makeYear;
+	}
 
-		public String getModelNo() {
-			return modelNo;
-		}
+	public void setMakeYear(String makeYear) {
+		this.makeYear = makeYear;
+	}
 
-		public void setModelNo(String modelNo) {
-			this.modelNo = modelNo;
-		}
+	public String getColorsAvailable() {
+		return colorsAvailable;
+	}
 
-		public int getPrice() {
-			return price;
-		}
+	public void setColorsAvailable(String colorsAvailable) {
+		this.colorsAvailable = colorsAvailable;
+	}
 
-		public void setPrice(int price) {
-			this.price = price;
-		}
-		
-		public String getImageSrc() {
-			return imageSrc;
-		}
+	@Column(name = "colorsAvailable")
+	private String colorsAvailable;
 
-		public void setImageSrc(String imageSrc) {
-			this.imageSrc = imageSrc;
-		}
+	public Car() {
 
-		public String getDescription() {
-			return description;
-		}
+	}
 
-		public void setDescription(String description) {
-			this.description = description;
-		}
-		
-		
-		
+	public Car(String brand, String colorsAvailable, String description, String imageSrc, String makeYear,
+			String modelNo, int price) {
+		// TODO Auto-generated constructor stub
+		this.brand = brand;
+		this.colorsAvailable = colorsAvailable;
+		this.description = description;
+		this.imageSrc = imageSrc;
+		this.makeYear = makeYear;
+		this.modelNo = modelNo;
+		this.price = price;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public String getModelNo() {
+		return modelNo;
+	}
+
+	public void setModelNo(String modelNo) {
+		this.modelNo = modelNo;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getImageSrc() {
+		return imageSrc;
+	}
+
+	public void setImageSrc(String imageSrc) {
+		this.imageSrc = imageSrc;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 }
